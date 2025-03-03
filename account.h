@@ -16,6 +16,7 @@ public:
     account();
     account::account(std::string newusername);
     account(std::string newusername, balance newaccbalance);
+    ~account();
 
     void deposit(double sum);
     bool withdraw(double sum);

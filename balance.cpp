@@ -4,8 +4,15 @@
 
 #include "balance.h"
 
+#include <iostream>
+#include <ostream>
+
 balance::balance(double initbalance): amount(initbalance) {}
-balance::balance(): amount(0) {}
+balance::balance(): amount(0.0) {}
+balance::~balance() {
+    std::cout << "Destructor balance" << "\n";
+}
+
 
 void balance::deposit(double sum) {
     amount += sum;

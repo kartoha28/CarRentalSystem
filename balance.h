@@ -13,6 +13,7 @@ private:
 public:
     balance(double initbalance);
     balance();
+    ~balance();
     void deposit(double sum);
     bool withdraw(double sum);
     double getBalance() const;

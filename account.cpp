@@ -10,6 +10,10 @@
 account::account(): account("None", 0.0) {}
 account::account(std::string newusername): username(newusername, 0.0) {}
 account::account(std::string newusername, balance newaccbalance): username(newusername), accbalance(newaccbalance) {}
+account::~account() {
+    std::cout << "Destructing account of:" << username << "\n";
+}
+
 
 void account::deposit(double sum) {
     accbalance.deposit(sum);
