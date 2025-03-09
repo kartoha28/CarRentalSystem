@@ -4,8 +4,11 @@ project(lab2)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(lab2 main.cpp
-        account.cpp
-        account.h
-        balance.cpp
-        balance.h
-        balance.cpp)
+        Account.cpp
+        Account.h
+        Car.cpp
+        Car.h
+        RentalOrder.cpp
+        RentalOrder.h
+        RentalSystem.cpp
+        RentalSystem.h)
