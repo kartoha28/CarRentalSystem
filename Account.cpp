@@ -1,12 +1,52 @@
 #include "Account.h"
 #include <iostream>
 
+int Account::last_id=0;
+
 //Конструктори та деструктор
-Account::Account(int id) : Account(id, "None", 0.0) {}
-Account::Account(int id, std::string name) : Account(id, name, 0.0) {}
-Account::Account(int id, std::string name, double balance): id(id), name(name), balance(balance) {}
+Account::Account() : Account("None", 0.0) {}
+Account::Account(std::string name) : Account(name, 0.0) {}
+Account::Account(std::string name, double balance): id(++last_id), name(name), balance(balance) {}
 Account::~Account() {
     std::cout << "Account with ID " << id << " is being destroyed.\n";
+}
+
+// Конструктор копіювання
+Account::Account(const Account& other)
+    : id(other.id), name(other.name), balance(other.balance), rental_history(other.rental_history) {
+    std::cout << "Copy constructor called for Account ID: " << id << "\n";
+}
+
+// Конструктор переміщення
+Account::Account(Account&& other) noexcept
+    : id(other.id), name(std::move(other.name)), balance(other.balance), rental_history(std::move(other.rental_history)) {
+    std::cout << "Move constructor called for Account ID: " << id << "\n";
+
+    other.id = 0;
+    other.balance = 0.0;
+}
+
+// Оператор присвоєння копіювання
+Account& Account::operator=(const Account& other) {
+    if (this != &other) {
+        name = other.name;
+        balance = other.balance;
+        rental_history = other.rental_history;
+    }
+    return *this;
+}
+
+// Оператор присвоєння переміщення
+Account& Account::operator=(Account&& other) noexcept {
+    if (this != &other) {
+        name = std::move(other.name);
+        balance = other.balance;
+        rental_history = std::move(other.rental_history);
+
+        other.id = 0;
+        other.balance = 0.0;
+    }
+    return *this;
 }
 
 // отримання данних
@@ -25,6 +65,11 @@ double Account::getBalance() const {
 std::vector<int> Account::getRentalHistory() const {
     return rental_history;
 }
+
+int Account::numberOfUser() {
+    return last_id;
+}
+
 
 // Методи роботи з балансом
 void Account::deposit(double amount) {
@@ -54,16 +99,22 @@ void Account::addRental(int car_id) {
 
 // Виведення інформації
 void Account::displayInfo() const {
-    std::cout << "Account ID: " << id << "\n"
-              << "Name: " << name << "\n"
-              << "Balance: $" << balance << "\n"
-              << "Rental History: ";
-    if (rental_history.empty()) {
-        std::cout << "No rentals yet.";
+    std::cout << *this;
+}
+
+// Перевантаження оператора <<
+std::ostream& operator<<(std::ostream& out, const Account& account) {
+    out << "Account ID: " << account.id << "\n"
+        << "Name: " << account.name << "\n"
+        << "Balance: $" << account.balance << "\n"
+        << "Rental History: ";
+    if (account.rental_history.empty()) {
+        out << "No rentals yet.";
     } else {
-        for (int car_id : rental_history) {
-            std::cout << car_id << " ";
+        for (int car_id : account.rental_history) {
+            out << car_id << " ";
         }
     }
-    std::cout << "\n----------------------\n";
+    out << "\n----------------------\n";
+    return out;
 }

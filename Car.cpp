@@ -5,9 +5,7 @@
 #include "Car.h"
 #include <iostream>
 
-// Конструктор
-Car::Car(int id, std::string brand, std::string model, int year, double rental_price)
-    : id(id), brand(brand), model(model), year(year), rental_price(rental_price), status(CarStatus::Available) {}
+Car::Car(int id, std::string brand, std::string model, int year, double rental_price): id(id), brand(brand), model(model), year(year), rental_price(rental_price), status(CarStatus::Available) {}
 
 // отримання данних
 int Car::getId() const {
@@ -34,7 +32,7 @@ CarStatus Car::getStatus() const {
     return status;
 }
 
-// Сетери
+//змінити статус авто
 void Car::setStatus(CarStatus new_status) {
     status = new_status;
 }

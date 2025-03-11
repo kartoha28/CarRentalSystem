@@ -21,7 +21,7 @@ private:
     CarStatus status;
 
 public:
-    // Конструктор
+
     Car(int id, std::string brand, std::string model, int year, double rental_price);
 
     // отримання данних
@@ -32,11 +32,9 @@ public:
     double getRentalPrice() const;
     CarStatus getStatus() const;
 
-    // Сетери
-    void setStatus(CarStatus new_status);
+    void setStatus(CarStatus new_status);//змінити статус авто
 
-    // Методи
-    bool isAvailable() const;
+    bool isAvailable() const;//чи доступно для оренди
     void displayInfo() const;
 };
 

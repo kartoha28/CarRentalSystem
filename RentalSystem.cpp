@@ -6,7 +6,7 @@
 #include <iostream>
 #include <ctime>
 
-// Конструктор
+
 RentalSystem::RentalSystem() : next_order_id(1) {}
 
 // Додавання акаунта
@@ -92,21 +92,19 @@ bool RentalSystem::returnCar(int order_id) {
     return false;
 }
 
-// Виведення акаунтів
+// Виведення списків акаунтів, машин та ордерів
 void RentalSystem::displayAccounts() const {
     for (const auto& account : accounts) {
         account.displayInfo();
     }
 }
 
-// Виведення автомобілів
 void RentalSystem::displayCars() const {
     for (const auto& car : cars) {
         car.displayInfo();
     }
 }
 
-// Виведення ордерів
 void RentalSystem::displayOrders() const {
     for (const auto& order : rental_orders) {
         order.displayInfo();

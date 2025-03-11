@@ -6,6 +6,7 @@
 
 class Account {
 private:
+    static int last_id;
     int id;
     std::string name;
     double balance;
@@ -13,24 +14,31 @@ private:
 
 public:
     // Конструктори та деструктор
-    Account(int id);
-    Account(int id, std::string name);
-    Account(int id, std::string name, double balance);
+    Account();
+    Account(std::string name);
+    Account(std::string name, double balance);
     ~Account();
+
+    Account(const Account& other);
+    Account(Account&& other) noexcept;
+    Account& operator=(const Account& other);
+    Account& operator=(Account&& other) noexcept;
 
     // отримання данних
     int getId() const;
     std::string getName() const;
     double getBalance() const;
     std::vector<int> getRentalHistory() const;
+    static int numberOfUser();
 
     // Методи роботи з балансом
     void deposit(double amount);
     bool withdraw(double amount);
 
-    void addRental(int car_id);
+    void addRental(int car_id);//запис про оренду авто
 
     void displayInfo() const;
+    friend std::ostream& operator<<(std::ostream& out, const Account& account);
 };
 
 #endif // ACCOUNT_H

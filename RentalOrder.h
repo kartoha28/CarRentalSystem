@@ -19,7 +19,7 @@ private:
     bool is_active;
 
 public:
-    // Конструктор
+
     RentalOrder(int order_id, int account_id, int car_id, std::time_t start_date, std::time_t end_date, double total_price);
 
     // отримання данних

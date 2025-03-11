@@ -18,14 +18,13 @@ private:
     int next_order_id;
 
 public:
-    // Конструктор
     RentalSystem();
 
-    // Методи управління акаунтами
+    //управління акаунтами
     void addAccount(const Account& account);
     Account* findAccount(int account_id);
 
-    // Методи управління автомобілями
+    //управління автомобілями
     void addCar(const Car& car);
     Car* findCar(int car_id);
 
@@ -33,7 +32,7 @@ public:
     bool rentCar(int account_id, int car_id, int rental_days);
     bool returnCar(int order_id);
 
-    // Виведення інформації
+    // Виведення списків акаунтів, машин та ордерів
     void displayAccounts() const;
     void displayCars() const;
     void displayOrders() const;
