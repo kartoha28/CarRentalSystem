@@ -11,4 +11,6 @@ add_executable(lab2 main.cpp
         RentalOrder.cpp
         RentalOrder.h
         RentalSystem.cpp
-        RentalSystem.h)
+        RentalSystem.h
+        PremiumAccount.cpp
+        PremiumAccount.h)

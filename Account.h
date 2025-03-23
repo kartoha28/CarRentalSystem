@@ -5,7 +5,7 @@
 #include <vector>
 
 class Account {
-private:
+protected:
     static int last_id;
     int id;
     std::string name;
@@ -32,12 +32,12 @@ public:
     static int numberOfUser();
 
     // Методи роботи з балансом
-    void deposit(double amount);
+    virtual void deposit(double amount);
     bool withdraw(double amount);
 
     void addRental(int car_id);//запис про оренду авто
 
-    void displayInfo() const;
+    virtual void displayInfo() const;
     friend std::ostream& operator<<(std::ostream& out, const Account& account);
 };
 
