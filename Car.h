@@ -13,6 +13,7 @@ enum class CarStatus { Available, Rented, Maintenance };
 
 class Car {
 private:
+    static int last_id;
     int id;
     std::string brand;
     std::string model;
@@ -22,7 +23,7 @@ private:
 
 public:
 
-    Car(int id, std::string brand, std::string model, int year, double rental_price);
+    Car(std::string brand, std::string model, int year, double rental_price);
 
     // отримання данних
     int getId() const;

@@ -8,8 +8,8 @@ int main() {
     rentalSystem.addAccount(Account("John Doe", 500.0));
     rentalSystem.addAccount(Account("Alice Smith", 300.0));
 
-    rentalSystem.addCar(Car(1, "Toyota", "Camry", 2020, 50.0));
-    rentalSystem.addCar(Car(2, "BMW", "X5", 2022, 100.0));
+    rentalSystem.addCar(Car("Toyota", "Camry", 2020, 50.0));
+    rentalSystem.addCar(Car("BMW", "X5", 2022, 100.0));
 
     std::cout << "\n--- Initial Data ---\n";
     rentalSystem.displayAccounts();

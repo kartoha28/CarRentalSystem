@@ -5,7 +5,9 @@
 #include "Car.h"
 #include <iostream>
 
-Car::Car(int id, std::string brand, std::string model, int year, double rental_price): id(id), brand(brand), model(model), year(year), rental_price(rental_price), status(CarStatus::Available) {}
+int Car::last_id=0;
+
+Car::Car(std::string brand, std::string model, int year, double rental_price): id(++last_id), brand(brand), model(model), year(year), rental_price(rental_price), status(CarStatus::Available) {}
 
 // отримання данних
 int Car::getId() const {
