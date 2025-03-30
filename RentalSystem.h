@@ -6,13 +6,15 @@
 #define RENTALSYSTEM_H
 
 #include "Account.h"
+#include "PremiumAccount.h"
 #include "Car.h"
 #include "RentalOrder.h"
 #include <vector>
+#include <memory>
 
 class RentalSystem {
 private:
-    std::vector<Account> accounts;
+    std::vector<std::unique_ptr<Account>> accounts; // Вектор вказівників на акаунти
     std::vector<Car> cars;
     std::vector<RentalOrder> rental_orders;
     int next_order_id;
@@ -21,7 +23,8 @@ public:
     RentalSystem();
 
     //управління акаунтами
-    void addAccount(const Account& account);
+    void addAccount(std::unique_ptr<Account> account);
+    void accountDeposit(int account_id, double amount);
     Account* findAccount(int account_id);
 
     //управління автомобілями

@@ -11,6 +11,7 @@ Account::~Account() {
     std::cout << "Account with ID " << id << " is being destroyed.\n";
 }
 
+
 // Конструктор копіювання
 Account::Account(const Account& other)
     : id(other.id), name(other.name), balance(other.balance), rental_history(other.rental_history) {

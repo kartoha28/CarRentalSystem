@@ -14,6 +14,11 @@ private:
 
 public:
     PremiumAccount(std::string name, double balance, double discount = 0.1, double bonus = 0.05);
+    PremiumAccount(const PremiumAccount& other);
+    PremiumAccount(PremiumAccount&& other) noexcept;
+    PremiumAccount(const Account& other);
+    PremiumAccount& operator=(const PremiumAccount& other);
+    PremiumAccount& operator=(PremiumAccount&& other) noexcept;
 
     void deposit(double amount) override; // Перевизначення методу поповнення балансу
     double getDiscountRate() const;

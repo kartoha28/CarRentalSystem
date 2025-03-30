@@ -17,7 +17,7 @@ public:
     Account();
     Account(std::string name);
     Account(std::string name, double balance);
-    ~Account();
+    virtual ~Account();
 
     Account(const Account& other);
     Account(Account&& other) noexcept;

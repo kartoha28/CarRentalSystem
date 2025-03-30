@@ -5,24 +5,36 @@
 #include "RentalSystem.h"
 #include <iostream>
 #include <ctime>
+#include "Account.h"
+#include "PremiumAccount.h"
+#include "Car.h"
+#include "RentalOrder.h"
+#include <vector>
+#include <memory>
 
 
 RentalSystem::RentalSystem() : next_order_id(1) {}
 
 // Додавання акаунта
-void RentalSystem::addAccount(const Account& account) {
-    accounts.push_back(account);
+void RentalSystem::addAccount(std::unique_ptr<Account> account) {
+    accounts.push_back(std::move(account));
 }
 
-// Пошук акаунта за ID
+//Поповнення рахунку
+void RentalSystem::accountDeposit(int account_id, double amount) {
+    accounts[account_id-1]->deposit(amount);
+}
+
+//Пошук акаунта за ID
 Account* RentalSystem::findAccount(int account_id) {
     for (auto& account : accounts) {
-        if (account.getId() == account_id) {
-            return &account;
+        if (account->getId() == account_id) {
+            return account.get();
         }
     }
     return nullptr;
 }
+
 
 // Додавання автомобіля
 void RentalSystem::addCar(const Car& car) {
@@ -40,6 +52,7 @@ Car* RentalSystem::findCar(int car_id) {
 }
 
 // Оренда автомобіля
+
 bool RentalSystem::rentCar(int account_id, int car_id, int rental_days) {
     Account* account = findAccount(account_id);
     Car* car = findCar(car_id);
@@ -58,7 +71,14 @@ bool RentalSystem::rentCar(int account_id, int car_id, int rental_days) {
     }
 
     double total_price = car->getRentalPrice() * rental_days;
-    if (!account->withdraw(total_price)) {
+
+    // Перевіряємо, чи акаунт є преміумом, і застосовуємо знижку
+    PremiumAccount* premium = new PremiumAccount(*account);
+    if (PremiumAccount* premium = dynamic_cast<PremiumAccount*>(account)) {
+        total_price = premium->applyDiscount(total_price);
+    }
+
+    if (!(account->withdraw(total_price))) {
         std::cout << "Insufficient balance.\n";
         return false;
     }
@@ -95,7 +115,7 @@ bool RentalSystem::returnCar(int order_id) {
 // Виведення списків акаунтів, машин та ордерів
 void RentalSystem::displayAccounts() const {
     for (const auto& account : accounts) {
-        account.displayInfo();
+        account->displayInfo();
     }
 }
 
