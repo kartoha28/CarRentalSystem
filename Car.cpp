@@ -5,54 +5,30 @@
 #include "Car.h"
 #include <iostream>
 
-int Car::last_id=0;
+Car::Car(std::string brand, std::string model, int year, double rental_price, FuelType fuel_type, bool is_automatic)
+    : Vehicle(brand, model, year, rental_price), fuel_type(fuel_type), is_automatic(is_automatic) {}
 
-Car::Car(std::string brand, std::string model, int year, double rental_price): id(++last_id), brand(brand), model(model), year(year), rental_price(rental_price), status(CarStatus::Available) {}
-
-// отримання данних
-int Car::getId() const {
-    return id;
+FuelType Car::getFuelType() const {
+    return fuel_type;
 }
 
-std::string Car::getBrand() const {
-    return brand;
+bool Car::getIsAutomatic() const {
+    return is_automatic;
 }
 
-std::string Car::getModel() const {
-    return model;
-}
-
-int Car::getYear() const {
-    return year;
-}
-
-double Car::getRentalPrice() const {
-    return rental_price;
-}
-
-CarStatus Car::getStatus() const {
-    return status;
-}
-
-//змінити статус авто
-void Car::setStatus(CarStatus new_status) {
-    status = new_status;
-}
-
-// Перевірка доступності авто
-bool Car::isAvailable() const {
-    return status == CarStatus::Available;
-}
-
-// Виведення інформації про автомобіль
 void Car::displayInfo() const {
-    std::cout << "Car ID: " << id << "\n"
-              << "Brand: " << brand << "\n"
-              << "Model: " << model << "\n"
-              << "Year: " << year << "\n"
-              << "Rental Price per day: $" << rental_price << "\n"
-              << "Status: " << (status == CarStatus::Available ? "Available" :
-                              (status == CarStatus::Rented ? "Rented" : "Maintenance"))
-              << "\n----------------------\n";
+    std::cout << "Vehicle ID: " << id << "\n" << "Vehicle type: " << "Car\n";
+    Vehicle::displayInfo();
+    std::cout << "Fuel Type: ";
+
+    switch (fuel_type) {
+        case FuelType::Petrol:   std::cout << "Petrol"; break;
+        case FuelType::Diesel:   std::cout << "Diesel"; break;
+        case FuelType::Electric: std::cout << "Electric"; break;
+        case FuelType::Hybrid:   std::cout << "Hybrid"; break;
+    }
+
+    std::cout << "\nTransmission: " << (is_automatic ? "Automatic" : "Manual") << "\n"
+              << "----------------------\n";
 }
 

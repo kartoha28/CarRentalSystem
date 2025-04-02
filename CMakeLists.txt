@@ -13,4 +13,8 @@ add_executable(lab2 main.cpp
         RentalSystem.cpp
         RentalSystem.h
         PremiumAccount.cpp
-        PremiumAccount.h)
+        PremiumAccount.h
+        Vehicle.cpp
+        Vehicle.h
+        Motorcycle.cpp
+        Motorcycle.h)

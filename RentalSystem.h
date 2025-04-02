@@ -7,37 +7,38 @@
 
 #include "Account.h"
 #include "PremiumAccount.h"
-#include "Car.h"
 #include "RentalOrder.h"
+#include "Vehicle.h"
+#include "Car.h"
 #include <vector>
 #include <memory>
 
 class RentalSystem {
 private:
-    std::vector<std::unique_ptr<Account>> accounts; // Вектор вказівників на акаунти
-    std::vector<Car> cars;
+    std::vector<std::unique_ptr<Account>> accounts; // Вектор унікальних вказівників на акаунти
+    std::vector<std::unique_ptr<Vehicle>> vehicles; // Вектор унікальних вказівників на транспортні засоби
     std::vector<RentalOrder> rental_orders;
     int next_order_id;
 
 public:
     RentalSystem();
 
-    //управління акаунтами
+    // Управління акаунтами
     void addAccount(std::unique_ptr<Account> account);
     void accountDeposit(int account_id, double amount);
     Account* findAccount(int account_id);
 
-    //управління автомобілями
-    void addCar(const Car& car);
-    Car* findCar(int car_id);
+    // Управління транспортними засобами
+    void addVehicle(std::unique_ptr<Vehicle> vehicle);
+    Vehicle* findVehicle(int vehicle_id);
 
     // Методи оренди
-    bool rentCar(int account_id, int car_id, int rental_days);
-    bool returnCar(int order_id);
+    bool rentVehicle(int account_id, int vehicle_id, int rental_days);
+    bool returnVehicle(int order_id);
 
-    // Виведення списків акаунтів, машин та ордерів
+    // Виведення списків акаунтів, транспортних засобів та ордерів
     void displayAccounts() const;
-    void displayCars() const;
+    void displayVehicles() const;
     void displayOrders() const;
 };
 

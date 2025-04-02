@@ -5,37 +5,26 @@
 #ifndef CAR_H
 #define CAR_H
 
-#define CAR_H
-
+#include "Vehicle.h"
 #include <string>
 
-enum class CarStatus { Available, Rented, Maintenance };
+enum class FuelType {
+    Petrol,
+    Diesel,
+    Electric,
+    Hybrid
+};
 
-class Car {
+class Car : public Vehicle {
 private:
-    static int last_id;
-    int id;
-    std::string brand;
-    std::string model;
-    int year;
-    double rental_price;
-    CarStatus status;
+    FuelType fuel_type;
+    bool is_automatic;
 
 public:
+    Car(std::string brand, std::string model, int year, double rental_price, FuelType fuel_type, bool is_automatic);
 
-    Car(std::string brand, std::string model, int year, double rental_price);
-
-    // отримання данних
-    int getId() const;
-    std::string getBrand() const;
-    std::string getModel() const;
-    int getYear() const;
-    double getRentalPrice() const;
-    CarStatus getStatus() const;
-
-    void setStatus(CarStatus new_status);//змінити статус авто
-
-    bool isAvailable() const;//чи доступно для оренди
+    FuelType getFuelType() const;
+    bool getIsAutomatic() const;
     void displayInfo() const;
 };
 
