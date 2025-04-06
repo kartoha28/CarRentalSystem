@@ -3,15 +3,17 @@
 #include <iostream>
 
 #include "Motorcycle.h"
+#include "Bus.h"
 #include "PremiumAccount.h"
+#include "Truck.h"
 
 int main() {
     RentalSystem rentalSystem;
     rentalSystem.addAccount(std::make_unique<PremiumAccount>("John", 500.0, 0.1, 0.05));
     rentalSystem.addAccount(std::make_unique<Account>("Alice Smith", 300.0));
 
-    rentalSystem.addVehicle(std::make_unique<Motorcycle>("Toyota", "Camry", 2020, 50.0, MotorcycleType::Standard, false));
-    rentalSystem.addVehicle(std::make_unique<Car>("BMW", "X5", 2022, 100.0, FuelType::Hybrid, 1));
+    rentalSystem.addVehicle(std::make_unique<Bus>("Toyota", "Camry", 2020, 50.0, 20, true, false ));
+    rentalSystem.addVehicle(std::make_unique<Truck>("BMW", "X5", 2022, 100.0,20, 1));
 
     std::cout << "\n--- Initial Data ---\n";
     rentalSystem.displayAccounts();

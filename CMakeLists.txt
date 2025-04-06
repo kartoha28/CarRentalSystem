@@ -17,4 +17,8 @@ add_executable(lab2 main.cpp
         Vehicle.cpp
         Vehicle.h
         Motorcycle.cpp
-        Motorcycle.h)
+        Motorcycle.h
+        Bus.cpp
+        Bus.h
+        Truck.cpp
+        Truck.h)
