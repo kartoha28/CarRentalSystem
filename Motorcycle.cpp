@@ -8,6 +8,10 @@
 Motorcycle::Motorcycle(std::string brand, std::string model, int year, double rental_price, MotorcycleType type, bool has_sidecar)
     : Vehicle(brand, model, year, rental_price), type(type), has_sidecar(has_sidecar) {}
 
+std::string Motorcycle::getType() {
+    return "Motorcycle";
+}
+
 MotorcycleType Motorcycle::getType() const {
     return type;
 }

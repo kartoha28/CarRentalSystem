@@ -8,6 +8,11 @@
 Car::Car(std::string brand, std::string model, int year, double rental_price, FuelType fuel_type, bool is_automatic)
     : Vehicle(brand, model, year, rental_price), fuel_type(fuel_type), is_automatic(is_automatic) {}
 
+std::string Car::getType() {
+    return "Car";
+}
+
+
 FuelType Car::getFuelType() const {
     return fuel_type;
 }

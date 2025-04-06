@@ -9,11 +9,11 @@
 #include "PremiumAccount.h"
 #include "RentalOrder.h"
 #include "Vehicle.h"
-#include "Car.h"
+#include "IDisplayable.h"
 #include <vector>
 #include <memory>
 
-class RentalSystem {
+class RentalSystem : public IDisplayable{
 private:
     std::vector<std::unique_ptr<Account>> accounts; // Вектор унікальних вказівників на акаунти
     std::vector<std::unique_ptr<Vehicle>> vehicles; // Вектор унікальних вказівників на транспортні засоби
@@ -22,6 +22,8 @@ private:
 
 public:
     RentalSystem();
+
+    void displayInfo() const override;
 
     // Управління акаунтами
     void addAccount(std::unique_ptr<Account> account);

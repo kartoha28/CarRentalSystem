@@ -18,6 +18,7 @@ public:
     Bus(std::string brand, std::string model, int year, double rental_price,
         int seating_capacity, bool has_wifi, bool has_wc);
 
+    std::string getType() override;
     int getSeatingCapacity() const;
     bool hasWiFi() const;
     bool hasWC() const;

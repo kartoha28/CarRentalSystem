@@ -16,6 +16,7 @@ public:
     Truck(std::string brand, std::string model, int year, double rental_price,
           double max_load_capacity, int axles);
 
+    std::string getType() override;
     double getMaxLoadCapacity() const;
     int getAxles() const;
 

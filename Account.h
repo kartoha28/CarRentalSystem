@@ -3,8 +3,9 @@
 
 #include <string>
 #include <vector>
+#include "IDisplayable.h"
 
-class Account {
+class Account : public IDisplayable{
 protected:
     static int last_id;
     int id;

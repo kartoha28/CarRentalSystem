@@ -6,10 +6,11 @@
 #define VEHICLE_H
 
 #include <string>
+#include "IDisplayable.h"
 
 enum class VehicleStatus { Available, Rented, Maintenance };
 
-class Vehicle {
+class Vehicle : public IDisplayable{
 protected:
     static int last_id;
     int id;
@@ -24,6 +25,7 @@ public:
     Vehicle(std::string brand, std::string model, int year, double rental_price);
 
     // отримання данних
+    virtual std::string getType() = 0;  // чисто віртуальна функція
     int getId() const;
     std::string getBrand() const;
     std::string getModel() const;

@@ -23,6 +23,7 @@ private:
 public:
     Car(std::string brand, std::string model, int year, double rental_price, FuelType fuel_type, bool is_automatic);
 
+    std::string getType() override;
     FuelType getFuelType() const;
     bool getIsAutomatic() const;
     void displayInfo() const;

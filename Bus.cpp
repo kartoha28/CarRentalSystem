@@ -11,6 +11,10 @@ Bus::Bus(std::string brand, std::string model, int year, double rental_price,int
       has_wifi(has_wifi),
       has_wc(has_wc) {}
 
+std::string Bus::getType() {
+    return "Bus";
+}
+
 int Bus::getSeatingCapacity() const {
     return seating_capacity;
 }
@@ -24,6 +28,7 @@ bool Bus::hasWC() const {
 }
 
 void Bus::displayInfo() const {
+    std::cout << "Vehicle ID: " << id << "\n" << "Vehicle type: " << "Bus\n";
     Vehicle::displayInfo();
     std::cout << "Seating Capacity: " << seating_capacity << "\n"
               << "Wi-Fi: " << (has_wifi ? "Yes" : "No") << "\n"

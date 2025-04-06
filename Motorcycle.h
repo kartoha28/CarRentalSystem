@@ -22,6 +22,7 @@ private:
 public:
     Motorcycle(std::string brand, std::string model, int year, double rental_price, MotorcycleType type, bool has_sidecar);
 
+    std::string getType() override;
     MotorcycleType getType() const;
     bool getHasSidecar() const;
     void displayInfo() const;

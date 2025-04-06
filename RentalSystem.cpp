@@ -7,13 +7,19 @@
 #include <ctime>
 #include "Account.h"
 #include "PremiumAccount.h"
-#include "Car.h"
 #include "RentalOrder.h"
 #include "Vehicle.h"
 #include <vector>
 #include <memory>
 
 RentalSystem::RentalSystem() : next_order_id(1) {}
+
+void RentalSystem::displayInfo() const{
+    std::cout << "Rental System Info:\n";
+    std::cout << "Accounts: " << accounts.size() << "\n";
+    std::cout << "Vehicles: " << vehicles.size() << "\n";
+    std::cout << "Orders: " << rental_orders.size() << "\n";
+}
 
 // Додавання акаунта
 void RentalSystem::addAccount(std::unique_ptr<Account> account) {

@@ -21,4 +21,5 @@ add_executable(lab2 main.cpp
         Bus.cpp
         Bus.h
         Truck.cpp
-        Truck.h)
+        Truck.h
+        IDisplayable.h)

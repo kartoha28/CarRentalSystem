@@ -7,8 +7,9 @@
 
 #include <string>
 #include <ctime>
+#include "IDisplayable.h"
 
-class RentalOrder {
+class RentalOrder : public IDisplayable{
 private:
     int order_id;
     int account_id;
