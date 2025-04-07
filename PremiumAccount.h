@@ -20,7 +20,7 @@ public:
     PremiumAccount& operator=(const PremiumAccount& other);
     PremiumAccount& operator=(PremiumAccount&& other) noexcept;
 
-    void deposit(double amount) override; // Перевизначення методу поповнення балансу
+    void deposit(double amount) final; // Перевизначення методу поповнення балансу
     double getDiscountRate() const;
     double applyDiscount(double price) const;
     void displayInfo() const override; // Перевизначений метод для виводу інформації

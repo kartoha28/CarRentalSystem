@@ -13,7 +13,7 @@
 #include <vector>
 #include <memory>
 
-class RentalSystem : public IDisplayable{
+class RentalSystem final : public IDisplayable{
 private:
     std::vector<std::unique_ptr<Account>> accounts; // Вектор унікальних вказівників на акаунти
     std::vector<std::unique_ptr<Vehicle>> vehicles; // Вектор унікальних вказівників на транспортні засоби
