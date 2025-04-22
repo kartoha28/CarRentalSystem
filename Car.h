@@ -12,8 +12,12 @@ enum class FuelType {
     Petrol,
     Diesel,
     Electric,
-    Hybrid
+    Hybrid,
+    Unknown
 };
+
+std::string to_string_fuel(FuelType fuelType);
+FuelType from_string_fuel(const std::string& fuelType);
 
 class Car : public Vehicle {
 private:

@@ -8,7 +8,10 @@
 #include <string>
 #include "IDisplayable.h"
 
-enum class VehicleStatus { Available, Rented, Maintenance };
+enum class VehicleStatus { Available, Rented, Maintenance, Unknown };
+
+std::string to_string(VehicleStatus status);
+VehicleStatus from_string(const std::string& status);
 
 class Vehicle : public IDisplayable{
 protected:
@@ -32,10 +35,11 @@ public:
     int getYear() const;
     double getRentalPrice() const;
     VehicleStatus getStatus() const;
+    bool isAvailable() const;//чи доступно для оренди
 
+    virtual void setId(int new_id);
     void setStatus(VehicleStatus new_status);//змінити статус авто
 
-    bool isAvailable() const;//чи доступно для оренди
     virtual void displayInfo() const;
 };
 

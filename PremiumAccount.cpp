@@ -5,8 +5,8 @@
 #include "PremiumAccount.h"
 #include <iostream>
 
-PremiumAccount::PremiumAccount(std::string name, double balance, double discount, double bonus)
-    : Account(name, balance), discount_rate(discount), bonus_rate(bonus) {
+PremiumAccount::PremiumAccount(std::string name, std::string password, double balance, double discount, double bonus)
+    : Account(name, password, balance), discount_rate(discount), bonus_rate(bonus) {
 }
 
 // Конструктор копіювання
@@ -65,8 +65,20 @@ double PremiumAccount::getDiscountRate() const {
     return discount_rate;
 }
 
+double PremiumAccount::getBonusRate() const {
+    return bonus_rate;
+}
+
 double PremiumAccount::applyDiscount(double price) const {
     return price * (1 - discount_rate);
+}
+
+void PremiumAccount::displayAccountInfo() const {
+    std::cout << "Premium Account ID: " << getId() << "\n"
+              << "Name: " << getName() << "\n"
+              << "Balance: $" << getBalance() << "\n"
+              << "Discount Rate: " << discount_rate * 100 << "%\n"
+              << "Bonus Rate: " << bonus_rate * 100 << "%\n";
 }
 
 void PremiumAccount::displayInfo() const {

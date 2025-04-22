@@ -22,4 +22,6 @@ add_executable(lab2 main.cpp
         Bus.h
         Truck.cpp
         Truck.h
-        IDisplayable.h)
+        IDisplayable.h
+        AuthManager.cpp
+        AuthManager.h)

@@ -7,6 +7,22 @@
 
 int Vehicle::last_id=0;
 
+std::string to_string(VehicleStatus status) {
+    switch (status) {
+        case VehicleStatus::Available: return "Available";
+        case VehicleStatus::Rented: return "Rented";
+        case VehicleStatus::Maintenance: return "UnderMaintenance";
+        default: return "Unknown";
+    }
+}
+
+VehicleStatus from_string(const std::string& status) {
+    if (status == "Available") return VehicleStatus::Available;
+    if (status == "Rented") return VehicleStatus::Rented;
+    if (status == "UnderMaintenance") return VehicleStatus::Maintenance;
+    else return VehicleStatus::Unknown;
+}
+
 Vehicle::Vehicle(std::string brand, std::string model, int year, double rental_price): id(++last_id), brand(brand), model(model), year(year), rental_price(rental_price), status(VehicleStatus::Available) {}
 
 // отримання данних
@@ -32,6 +48,11 @@ double Vehicle::getRentalPrice() const {
 
 VehicleStatus Vehicle::getStatus() const {
     return status;
+}
+
+void Vehicle::setId(int new_id) {
+    id = new_id;
+    last_id = new_id;
 }
 
 //змінити статус авто

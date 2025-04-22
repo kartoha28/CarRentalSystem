@@ -23,7 +23,14 @@ private:
 public:
     RentalSystem();
 
+    //збереження/завантаження даних
+    void saveData() const;
+    void loadData();
+
     void displayInfo() const override;
+
+    //отримання данних
+    const std::vector<std::unique_ptr<Account>>& getAccounts() const;
 
     // Управління акаунтами
     void addAccount(std::unique_ptr<Account> account);
@@ -33,6 +40,8 @@ public:
     // Управління транспортними засобами
     void addVehicle(std::unique_ptr<Vehicle> vehicle);
     Vehicle* findVehicle(int vehicle_id);
+
+    const RentalOrder* getOrderById(int id) const;
 
     // Методи оренди
     bool rentVehicle(int account_id, int vehicle_id, int rental_days);

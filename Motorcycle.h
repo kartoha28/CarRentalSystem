@@ -11,8 +11,12 @@ enum class MotorcycleType {
     Sport,
     Touring,
     Standard,
-    OffRoad
+    OffRoad,
+    Unknown
 };
+
+std::string to_string_motorcycleType(MotorcycleType type);
+MotorcycleType from_string_motorcycleType(const std::string& type);
 
 class Motorcycle : public Vehicle {
 private:

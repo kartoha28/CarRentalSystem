@@ -1,12 +1,13 @@
 #include "Account.h"
+#include "RentalSystem.h"
 #include <iostream>
 
 int Account::last_id=0;
 
 //Конструктори та деструктор
-Account::Account() : Account("None", 0.0) {}
-Account::Account(std::string name) : Account(name, 0.0) {}
-Account::Account(std::string name, double balance): id(++last_id), name(name), balance(balance) {}
+//Account::Account() : Account("None", 0.0) {}
+Account::Account(std::string name, std::string password) : Account(name, password, 0.0) {}
+Account::Account(std::string name, std::string password, double balance): id(++last_id), name(name), password(password), balance(balance) {}
 Account::~Account() {
     std::cout << "Account with ID " << id << " is being destroyed.\n";
 }
@@ -14,13 +15,13 @@ Account::~Account() {
 
 // Конструктор копіювання
 Account::Account(const Account& other)
-    : id(other.id), name(other.name), balance(other.balance), rental_history(other.rental_history) {
+    : id(other.id), name(other.name),password(other.password), balance(other.balance), rental_history(other.rental_history) {
     std::cout << "Copy constructor called for Account ID: " << id << "\n";
 }
 
 // Конструктор переміщення
 Account::Account(Account&& other) noexcept
-    : id(other.id), name(std::move(other.name)), balance(other.balance), rental_history(std::move(other.rental_history)) {
+    : id(other.id), name(std::move(other.name)), password(std::move(other.password)), balance(other.balance), rental_history(std::move(other.rental_history)) {
     std::cout << "Move constructor called for Account ID: " << id << "\n";
 
     other.id = 0;
@@ -31,6 +32,7 @@ Account::Account(Account&& other) noexcept
 Account& Account::operator=(const Account& other) {
     if (this != &other) {
         name = other.name;
+        password = other.password;
         balance = other.balance;
         rental_history = other.rental_history;
     }
@@ -41,6 +43,7 @@ Account& Account::operator=(const Account& other) {
 Account& Account::operator=(Account&& other) noexcept {
     if (this != &other) {
         name = std::move(other.name);
+        password = std::move(other.password);
         balance = other.balance;
         rental_history = std::move(other.rental_history);
 
@@ -50,6 +53,11 @@ Account& Account::operator=(Account&& other) noexcept {
     return *this;
 }
 
+void Account::setId(int new_id) {
+    id = new_id;
+    last_id = new_id;
+}
+
 // отримання данних
 int Account::getId() const {
     return id;
@@ -57,6 +65,10 @@ int Account::getId() const {
 
 std::string Account::getName() const {
     return name;
+}
+
+std::string Account::getPassword() const {
+    return password;
 }
 
 double Account::getBalance() const {
@@ -94,8 +106,28 @@ bool Account::withdraw(double amount) {
 }
 
 // Додавання запису про оренду авто
-void Account::addRental(int car_id) {
-    rental_history.push_back(car_id);
+void Account::addRental(int order_id) {
+    rental_history.push_back(order_id);
+}
+
+void Account::displayAccountInfo() const {
+    std::cout << "Account ID: " << id << "\n"
+              << "Name: " << name << "\n"
+              << "Balance: $" << balance << "\n";
+}
+
+void Account::displayRentalHistory(const RentalSystem& system) const {
+    std::cout << "\n--- Rental History for Account ID: " << id << " ---\n";
+    if (rental_history.empty()) {
+        std::cout << "No rental history available.\n";
+        return;
+    }
+    for (int orderId : rental_history) {
+        const RentalOrder* order = system.getOrderById(orderId);
+        if (order) {
+            order->displayInfo();
+        }
+    }
 }
 
 // Виведення інформації

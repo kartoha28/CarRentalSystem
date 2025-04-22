@@ -13,7 +13,7 @@ private:
     double bonus_rate;    // Відсоток бонусів при поповненні балансу
 
 public:
-    PremiumAccount(std::string name, double balance, double discount = 0.1, double bonus = 0.05);
+    PremiumAccount(std::string name,std::string password, double balance, double discount = 0.1, double bonus = 0.05);
     PremiumAccount(const PremiumAccount& other);
     PremiumAccount(PremiumAccount&& other) noexcept;
     PremiumAccount(const Account& other);
@@ -22,7 +22,9 @@ public:
 
     void deposit(double amount) final; // Перевизначення методу поповнення балансу
     double getDiscountRate() const;
+    double getBonusRate() const;
     double applyDiscount(double price) const;
+    void displayAccountInfo() const override;
     void displayInfo() const override; // Перевизначений метод для виводу інформації
 };
 
